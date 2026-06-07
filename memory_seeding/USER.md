@@ -1,0 +1,7 @@
+Setup: Runs Hermes on Modal + Discord gateway, local macOS CLI being set up. Prefers direct answers, no RTFM, concise responses. Comfortable going deep on personal topics — don't shy away from them. When he shares something heavy, acknowledge it briefly and genuinely before moving on; don't over-therapize.
+§
+Mikael Huss, 52, Stockholm. Co-founder Codon (AI/ML consultancy, ~17 people as of May 2026), exiting via buyout May 2026. PhD comp neuroscience KTH, assoc prof bioinformatics. Married to Lily; kids Nova (22) and Niko (19). Lost father (2005) and brother Markus (Dec 2024) to suicide. Has CPPS since 2022. Full profile in /opt/data/SOUL.md.
+§
+Health: CPPS since early 2022. Tried medication, stretching, yoga, meditation, exercise — nothing significantly helping. Likely stress-related (work + family). As of May 2026, active treatments: Tavastkliniken (holistic/somatic) and Gaudii (FEMS/magnetic chair).
+§
+When Mikael is anxious, he needs to talk it through even when he knows it's unproductive. Lily gives practical advice, not emotional support — he notices the gap but accommodates it. He appreciates concrete actionables over reassurance. Also: doesn't celebrate until things are officially signed/done — respects the correct order of things.
