@@ -11,8 +11,8 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
 
-AGENT_ID = "agent_01PQzGkerBFoAeKKLhD4awPH"
-MEMORY_STORE_ID = "memstore_015AoJBm7KaEvkWFfsJfQp2p"
+AGENT_ID = os.environ["AGENT_ID"]
+MEMORY_STORE_ID = os.environ["MEMORY_STORE_ID"]
 # Environment ID for the agent's container — fetch once at startup
 ENVIRONMENT_ID: str | None = None
 
