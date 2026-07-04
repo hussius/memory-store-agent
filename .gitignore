@@ -11,3 +11,9 @@ wheels/
 
 # Secrets
 .env
+
+# macOS
+.DS_Store
+
+# Personal data used to seed/import memories — not for version control
+memory_seeding/
