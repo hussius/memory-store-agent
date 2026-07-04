@@ -23,6 +23,11 @@ DISCORD_TOKEN = os.environ["DISCORD_TOKEN"]
 # Sessions are long-lived; the agent's attached memory store preserves context across restarts.
 user_sessions: dict[int, str] = {}
 
+# Rotate the session after this many user turns to keep context (and cost) bounded.
+# The memory store persists everything important, so nothing is lost on rotation.
+SESSION_ROTATION_TURNS = 15
+user_turn_counts: dict[int, int] = {}
+
 
 def resolve_environment_id() -> str:
     """Find the environment ID by looking at an existing session, or fetching environments."""
@@ -36,6 +41,12 @@ def resolve_environment_id() -> str:
 
 
 def get_or_create_session(discord_user_id: int) -> str:
+    turns = user_turn_counts.get(discord_user_id, 0)
+    if discord_user_id in user_sessions and turns >= SESSION_ROTATION_TURNS:
+        old_session = user_sessions.pop(discord_user_id)
+        user_turn_counts[discord_user_id] = 0
+        log.info("Rotated session for user %d after %d turns (old: %s)", discord_user_id, turns, old_session)
+
     if discord_user_id not in user_sessions:
         session = anthropic_client.beta.sessions.create(
             agent=AGENT_ID,
@@ -48,6 +59,7 @@ def get_or_create_session(discord_user_id: int) -> str:
         )
         user_sessions[discord_user_id] = session.id
         log.info("Created session %s for user %d", session.id, discord_user_id)
+
     return user_sessions[discord_user_id]
 
 
@@ -116,6 +128,7 @@ async def on_message(message: discord.Message):
     async with message.channel.typing():
         try:
             session_id = get_or_create_session(message.author.id)
+            user_turn_counts[message.author.id] = user_turn_counts.get(message.author.id, 0) + 1
             reply = await query_agent(session_id, text)
         except Exception as e:
             log.exception("Error querying agent")
