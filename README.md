@@ -50,4 +50,5 @@ Push to GitHub and connect the repo to a Railway project. Add the environment va
 
 - Only one instance of the bot should run at a time (local or Railway, not both) — Discord doesn't support multiple concurrent connections with the same token
 - Session IDs are held in memory and reset on restart; long-term context is preserved by the memory store, not the session
+- Sessions rotate after `SESSION_ROTATION_TURNS` (15) user turns to keep per-session context and cost bounded. On rotation the bot summarizes the conversation (`SUMMARY_MODEL`) and prepends that summary plus the last few exchanges to the first message of the new session, so the agent continues mid-conversation. The next session is created right after the 15th reply, so the following message doesn't wait for it. A restart still loses the handoff, since it lives in memory
 - The memory store can be pre-populated using `populate_memory.py`
