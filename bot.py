@@ -46,7 +46,7 @@ Write a compact summary (at most ~300 words) covering:
 - What the user shared in this conversation (events, people, feelings, plans), with names and dates.
 - What the mentor said, asked or suggested, and how the user responded.
 - Open threads: questions the mentor asked that are still unanswered, topics the user is in the middle of.
-- The language the conversation is held in, and its tone.
+- Which language each side writes in, and the tone. Describe this as it is; do not suggest changing it.
 
 Write plain prose or short bullets. No preamble."""
 
@@ -124,7 +124,7 @@ def _build_handoff(history: list[tuple[str, str]], name: str) -> str:
         "previous session was closed and this is a new one. From the user's side it is "
         "the same, uninterrupted conversation. Do not greet them, do not say it has been "
         "a while, and do not re-introduce topics as if new. Pick up exactly where the "
-        "conversation below left off, in the same language.]",
+        "conversation below left off, replying in the same language and style as in those exchanges.]",
     ]
     if summary:
         parts.append(f"<conversation_summary>\n{summary}\n</conversation_summary>")
